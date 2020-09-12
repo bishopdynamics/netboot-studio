@@ -1,0 +1,344 @@
+#!ipxe
+# Netboot Studio example generic menu 
+#  Copyright (C) 2019 James Bishop (jamesbishop2006@gmail.com)
+
+################### variables ###################
+#   please use / throughout, we handle issues in registry change (see readme)
+#   paths never end in /, should always be added when used
+
+# basic services
+set http-server http://${next-server}
+set images-root ${http-server}/images
+set background-image menu.png
+
+# Colour index	Basic ANSI colour
+# 0	0 (black)
+# 1	1 (red)
+# 2	2 (green)
+# 3	3 (yellow)
+# 4	15 (blue or transparent)1)
+# 5	5 (magenta)
+# 6	6 (cyan)
+# 7	7 (white)
+# 9	9 (default)2)
+set color-fg 7
+set color-bg 4
+console --x 800 --y 600 ||
+cpair --foreground ${color-fg} --background ${color-bg} 0
+cpair --foreground ${color-fg} --background ${color-bg} 1
+console --picture http://${next-server}/boot-images/${background-image} ||
+
+# menu options
+set menu-timeout 30000
+set submenu-timeout ${menu-timeout}
+set menu-default wds-efi-tftp
+
+# base paths for images
+set wds-boot ${images-root}/windows/boot
+set wds-wim ${images-root}/windows/wim
+set linux-base ${images-root}/linux
+set tools-base ${images-root}/tools
+
+set wds-prog-bios ${wds-boot}/x86/wdsnbp.com
+set wds-prog-efi ${wds-boot}/x64/wdsmgfw.efi
+
+# where to reload this script from
+set stage2-script ${http-server}/menu-stage2.ipxe
+
+
+# URLS
+set ubuntu-netboot-web-bionic-64bit http://archive.ubuntu.com/ubuntu/dists/bionic/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/
+set ubuntu-netboot-web-xenial-64bit http://archive.ubuntu.com/ubuntu/dists/xenial-updates/main/installer-amd64/current/images/hwe-netboot/ubuntu-installer/amd64/
+
+set debian-netboot-web-stretch-64bit http://http.us.debian.org/debian/dists/stretch/main/installer-amd64/current/images/netboot/debian-installer/amd64
+set debian-netboot-web-stretch-32bit http://http.us.debian.org/debian/dists/stretch/main/installer-i386/current/images/netboot/debian-installer/i386
+set debian-netboot-web-buster-64bit http://http.us.debian.org/debian/dists/buster/main/installer-amd64/current/images/netboot/debian-installer/amd64/
+
+# common default kernel args
+set linux-debian-default-args vga=788 debian-installer/locale=en_US keymap=us ipv6.disable=1 IPV6_DISABLE=1 net.ifnames=0 biosdevname=0
+set linux-ubuntu-default-args vga=788 debian-installer/locale=en_US keymap=us ipv6.disable=1 IPV6_DISABLE=1 net.ifnames=0 biosdevname=0
+
+################### MAIN MENU ###################
+:start
+menu Interactive Boot Menu
+item --gap -- ----------------iPXE Menu from ${next-server} ----------------
+item --gap -- ------- If booted from a USB stick, remove it now
+################### list items here ###################
+item --gap -- ------ Windows -----------
+item wimboot-desktop-10 WimBoot to Windows 10 Installer over HTTP
+item wimboot-server-2016 WimBoot to Server 2016 Installer over HTTP
+item wimboot-desktop-7 WimBoot to Windows 7 Installer over HTTP
+item wimboot-server-2012 WimBoot to Server 2012 Installer over HTTP
+item --gap --
+item --gap -- ------ VMWare -----------
+item vmware-esx-65-bios VMware ESXi 6.5 Installer (BIOS)
+item vmware-esx-65-efi VMware ESXi 6.5 Installer (EFI)
+item vmware-esx-60-efi VMware ESXi 6.0 Installer (EFI)
+item --gap --
+item --gap -- ------ Debian -----------
+item vanilla-debian-64 Debian 64bit Stable (v9 aka Stretch)
+item vanilla-debian-32 Debian 32bit Stable (v9 aka Stretch)
+item vanilla-debian-64-buster Debian 64bit Testing (v10 aka Buster)
+item --gap --
+item --gap -- ------ Ubuntu -----------
+item vanilla-ubuntu-64-xenial Ubuntu 16.04 (Xenial) 64bit
+item vanilla-ubuntu-64-bionic Ubuntu 18.04 (Bionic) 64bit
+item --gap --
+item --gap -- ------ Tools -----------
+item gparted-x86 GParted Live x86
+item gparted-x64 GParted Live x64
+item ubuntu-desktop-x64 Ubuntu 17.10 Desktop x64 Live (EFI)
+item show-info Show Machine Information
+item reboot Reboot
+item exit Exit 
+################### end of items list ###################
+choose --default ${menu-default} target && goto ${target}
+
+
+################### Define items below ###################################################################################
+## items must end with: goto-start
+## please leave exit at the end
+## please keep this in the same order as items list in menu
+## please use only imgfetch, imgload,   imgexec 
+##      instead of initrd,   kernel,    boot
+##      instead of module,   imgselect, chain  
+
+
+#### Windows #####################################################################################################
+
+:wimboot-common
+set full-image-path ${wds-wim}/${wim-image-name}
+imgload ${http-server}/wimboot || goto boot-failed
+# below is how to use wimboot gui, but will hide error messages
+# imgload ${http-server}/wimboot gui || goto boot-failed
+# fonts look nice even if you dont use gui
+imgfetch ${full-image-path}/boot/fonts/segmono_boot.ttf  segmono_boot.ttf ||
+imgfetch ${full-image-path}/boot/fonts/segoe_slboot.ttf  segoe_slboot.ttf ||
+imgfetch ${full-image-path}/boot/fonts/segoen_slboot.ttf segoen_slboot.ttf ||
+imgfetch ${full-image-path}/boot/fonts/wgl4_boot.ttf     wgl4_boot.ttf ||
+# for mounting our folder via smb to continue installation after bootup
+imgfetch ${full-image-path}/mount.bat mount.bat || goto boot-failed
+# this is what tells winpe to run mount.bat at boot
+imgfetch ${full-image-path}/winpeshl.ini winpeshl.ini|| goto boot-failed
+imgfetch ${full-image-path}/boot/bcd BCD || goto boot-failed
+imgfetch ${full-image-path}/boot/boot.sdi boot.sdi || goto boot-failed
+imgfetch -n boot.wim ${full-image-path}/sources/boot.wim boot.wim || goto boot-failed
+# uncomment both lines below for troubleshooting
+# imgstat
+# prompt
+echo Waiting 5 seconds to let you read messages above
+sleep 5 ||
+imgexec || goto boot-failed
+goto start
+
+
+# wim-image-name is a folder under ${wds-wim} 
+# inside must be: (just extract the entire iso to this folder)
+#   mount.bat
+#   winpeshl.ini
+#   boot/bcd
+#   boot/boot.sdi
+#   sources/boot.wim
+
+:wimboot-desktop-10
+set wim-image-name Windows_10
+goto wimboot-common
+
+:wimboot-desktop-7
+set wim-image-name Windows_7
+goto wimboot-common
+
+:wimboot-server-2016
+set wim-image-name Server_2016
+goto wimboot-common
+
+:wimboot-server-2012
+set wim-image-name Server_2012
+goto wimboot-common
+
+:wds-efi
+show wds-efi-http
+imgexec ${wds-efi-http} || goto boot-failed
+goto start
+
+:wds-bios
+show wds-bios-http
+imgexec ${wds-bios-http} || goto boot-failed
+goto start
+
+
+#### VMware ############################################################################################
+:vwmare-esx-65-bios
+imgfetch ${linux-base}/vmware/esx-6.5-realtek/MBOOT.C32 || goto boot-failed
+imgargs MBOOT.C32 -c ${linux-base}/vmware/esx-6.5-realtek/boot.cfg || goto boot-failed
+imgexec || goto boot-failed
+goto start
+
+:vmware-esx-efi-common
+# needs linux-base, image-name
+imgfetch ${linux-base}/vmware/${image-name}/EFI/BOOT/BOOTX64.EFI || goto boot-failed
+imgexec BOOTX64.EFI -c ${linux-base}/vmware/${image-name}/EFI/BOOT/BOOT.CFG || goto boot-failed
+goto start
+
+:vmware-esx-65-efi
+set image-name esx-6.5-realtek
+goto vmware-esx-efi-common
+
+:vmware-esx-60-efi
+set image-name esx-6.0-realtek
+goto vmware-esx-efi-common
+
+##### Debian #####################################################
+
+# vanilla installer for debian 64bit
+:vanilla-debian-64
+set this-image-base ${debian-netboot-web-stretch-64bit}
+set this-image-kernel linux
+set this-image-initrd initrd.gz
+set this-image-args initrd=${this-image-initrd} vga=788 debian-installer/locale=en_US keymap=us hw-detect/load_firmware=false --- ipv6.disable=1 IPV6_DISABLE=1 net.ifnames=0 biosdevname=0
+goto generic-linux
+
+# vanilla installer for debian 32bit
+:vanilla-debian-32
+set this-image-base ${debian-netboot-web-stretch-32bit}
+set this-image-kernel linux
+set this-image-initrd initrd.gz
+set this-image-args initrd=${this-image-initrd} vga=788 debian-installer/locale=en_US keymap=us hw-detect/load_firmware=false --- ipv6.disable=1 IPV6_DISABLE=1 net.ifnames=0 biosdevname=0
+goto generic-linux
+
+# vanilla installer for debian 10 aka buster 64bit
+:vanilla-debian-64-buster
+set this-image-base ${debian-netboot-web-buster-64bit}
+set this-image-kernel linux
+set this-image-initrd initrd.gz
+set this-image-args initrd=${this-image-initrd} vga=788 debian-installer/locale=en_US keymap=us hw-detect/load_firmware=false --- ipv6.disable=1 IPV6_DISABLE=1 net.ifnames=0 biosdevname=0
+goto generic-linux
+
+
+
+##### Ubuntu #####################################################
+
+# vanilla installer for ubuntu 1604 aka xenial 64bit
+:vanilla-ubuntu-64-xenial
+set this-image-base ${ubuntu-netboot-web-xenial-64bit}
+set this-image-kernel linux
+set this-image-initrd initrd.gz
+set this-image-args initrd=${this-image-initrd} vga=788 debian-installer/locale=en_US keymap=us hw-detect/load_firmware=false --- ipv6.disable=1 IPV6_DISABLE=1 net.ifnames=0 biosdevname=0
+goto generic-linux
+
+# vanilla installer for ubuntu 1804 aka bionic 64bit
+:vanilla-ubuntu-64-bionic
+set this-image-base ${ubuntu-netboot-web-bionic-64bit}
+set this-image-kernel linux
+set this-image-initrd initrd.gz
+set this-image-args initrd=${this-image-initrd} vga=788 debian-installer/locale=en_US keymap=us hw-detect/load_firmware=false --- ipv6.disable=1 IPV6_DISABLE=1 net.ifnames=0 biosdevname=0
+goto generic-linux
+
+
+
+
+
+
+
+
+
+#### gparted live #######################################################################################################
+:gparted-common
+set this-image-kernel vmlinuz
+set this-image-initrd initrd.img
+set this-image-args initrd=initrd.img boot=live config components union=overlay username=user noswap noeject ip= vga=788 fetch=${this-image-base}/filesystem.squashfs
+goto generic-linux
+
+:gparted-x86
+set this-image-base ${tools-base}/gparted-live-0.30.0-1-i686/live
+goto gparted-common
+
+:gparted-x64
+set this-image-base ${tools-base}/gparted-live-0.30.0-1-amd64/live
+goto gparted-common
+
+#### ubuntu-17.10-desktop-x64 ###########################################################################################
+# this still doesnt work
+:ubuntu-desktop-x64
+set this-image-base ${linux-base}/ubuntu/ubuntu-17.10-desktop-64bit/casper
+set this-image-kernel vmlinuz.efi
+set this-image-initrd initrd.lz
+set this-image-args file=${linux-base}/ubuntu/ubuntu-17.10-desktop-64bit/ubuntu.seed live-media fetch=${this-image-base}/filesystem.squashfs --- initrd initrd.lz
+goto generic-linux
+
+
+
+
+
+
+################################### utility functions ###################################################################
+
+:show-info
+show manufacturer
+show product
+show serial
+show asset
+show uuid
+show bustype
+show busloc
+show busid
+show chip
+show mac
+show ip
+show netmask
+show gateway
+show dns
+show domain
+show next-server
+show filename
+prompt Press any key to continue
+goto start
+
+:failed
+echo Something failed, hopefully errors are printed above this
+prompt Press any key to reboot
+goto reboot
+
+:boot-failed
+echo Failed to boot! hopefully errors are printed above this
+echo   make sure that you use the correct architecture
+prompt Press any key to return to menu
+goto start
+
+:reboot
+reboot
+
+:exit
+exit
+
+
+################### Generic Linux pseudo-function ###########################################
+:generic-linux
+# expects this-image-base, this-image-args, this-image-kernel, this-image-initrd
+show this-image-base
+show this-image-kernel
+show this-image-initrd
+# show this-image-args
+set this-full-kernel-uri ${this-image-base}/${this-image-kernel}
+set this-full-initrd-uri ${this-image-base}/${this-image-initrd}
+# show this-full-kernel-uri
+# show this-full-initrd-uri
+echo xxxxxxxxxxx  starting xxxxxxxxxxx
+imgfree
+imgfetch ${this-full-kernel-uri} || goto boot-failed
+imgfetch ${this-full-initrd-uri} || goto boot-failed
+imgload ${this-image-kernel} || goto boot-failed
+imgargs ${this-image-kernel} ${this-image-args} || goto boot-failed
+imgexec || goto boot-failed
+goto start
+
+# ################### Generic HTTP Linux pseudo-function ###########################################
+# :generic-linux
+# # expects this-image-base, this-image-args, this-image-kernel, this-image-initrd
+# imgfree
+# imgfetch ${this-image-base}/${this-image-kernel} || goto boot-failed
+# imgfetch ${this-image-base}/${this-image-initrd} || goto boot-failed
+# imgload ${this-image-kernel} || goto boot-failed
+# imgargs ${this-image-kernel} ${this-image-args} || goto boot-failed
+# imgexec || goto boot-failed
+# goto start

@@ -1,0 +1,157 @@
+<!-- Netboot Studio Web UI
+    
+    This file is part of Netboot Studio, a system for managing netboot clients
+    Copyright (C) 2019 James Bishop (jamesbishop2006@gmail.com)
+ -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Netboot Studio</title>
+        <meta name = "viewport" content = "width = device-width, initial-scale = 1"> 
+        <link rel="stylesheet" href="lib/materialize.min.css">
+        <link rel="stylesheet"  href="lib/material-icons.css">
+        <link rel="stylesheet" href="lib/codemirror.css">
+        <link rel="stylesheet" href="lib/codemirror-theme-material.css">
+        <style>
+            .page-body {
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+                position: absolute;
+                z-index: 1000;
+            }
+            .main-style {
+                bottom:54px;
+                flex: 1 0 auto;
+                left:2vw;
+                overflow:scroll;
+                padding-top:112px;
+                position:absolute;
+                right:2vw;
+                top:0;
+                width:95vw;
+
+            }
+            .file-button {
+                margin: 4px;
+            }
+            .big-modal { 
+                height: 90vh !important;
+                width: 90vw !important;
+            }
+            .small-modal { 
+                height: 250px !important;
+            }
+            .CodeMirror {
+                height: 50vh !important;
+            }
+            .modal_page {
+                display: flex;
+                height: 90%;
+            }
+            ::-webkit-scrollbar {
+                background: transparent;
+                width: 0;
+            }
+        </style>
+    </head>
+    <body class="page-body lighten-5">
+        <div id="static-header" style="z-index:100;">
+            <nav class="nav-extended">
+                <div class="nav-wrapper " style="width:100vw;">
+                    <a href="#" class="brand-logo">&nbsp; Netboot Studio</a>
+                </div>
+                <div>
+                    <ul class="tabs tabs-transparent ">
+                        <li class="tab col s2"><a class="active" href="#clients-tab" onclick="FetchData_Clients();">Clients</a></li>
+                        <li class="tab col s2"><a href="#images-tab" onclick="FetchData_Images();">Images</a></li>
+                        <li class="tab col s2"><a href="#unattendeds-tab" onclick="FetchData_Unattendeds();">Unattended</a></li>
+                        <li class="tab col s2"><a href="#isos-tab" onclick="FetchData_ISOs();">ISO Files</a></li>
+                        <!-- <li class="tab col s2"><a href="#table-tab" onclick="FetchData_Clients();">Table View</a></li> -->
+                        <li class="tab col s2"><a href="#log-tab" onclick="FetchData_Log();">Log</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <main class="main-style">
+            <div class="row" style="z-index:1000;">
+                <div id="clients-tab" class="col s12  lighten-5"></div>
+                <div id="images-tab" class="col s12  lighten-5"></div>
+                <div id="unattendeds-tab" class="col s12  lighten-5"></div>
+                <div id="isos-tab" class="col s12  lighten-5"></div>
+                <!-- <div id="table-tab" class="col s12  lighten-5"></div> -->
+                <div id="log-tab" class="col s12  lighten-5"></div>
+            </div>
+        </main>
+        <div id="modal_editor_unattended" class="big-modal modal modal-fixed-footer">
+            <div class="modal-content">
+                <h4>Unattended File Editor</h4><div id="modal_editor_unattended_name"></div>
+                <textarea id="editor_unattended" class="texteditor"></textarea>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Discard</a>
+                <a href="#!" class="waves-effect waves-green btn-flat" onclick="SaveUnattendedEditor()">Save</a>
+            </div>
+        </div>
+        <div id="modal_editor_imagefile" class="big-modal modal modal-fixed-footer">
+            <div class="modal-content">
+                <h4>Image File Editor</h4><div id="modal_editor_imagefile_name"></div>
+                <textarea id="editor_imagefile" class="texteditor"></textarea>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Discard</a>
+                <a href="#!" class="waves-effect waves-green btn-flat" onclick="SaveImageFileEditor()">Save</a>
+            </div>
+        </div>
+        <div id="modal_dialog_newunattended" class="small-modal modal modal-fixed-footer">
+            <div class="modal-content">
+                <h4>Create New Unattended File</h4>
+                <div class="input-field col s6">
+                    <input id="new_unattedned_file_name" type="text" class="validate" onkeypress="return blockSpecialChar(event)">
+                    <label for="new_unattedned_file_name">File Name</label>
+                    <span class="helper-text">should end in .cfg or .xml ( 0-9 A-Z - _ . )</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+                <a href="#!" class="waves-effect waves-green btn-flat" onclick="CreateNewUnattended();">Create</a>
+            </div>
+        </div>
+        <div id="modal_dialog_uploadiso" class="small-modal modal modal-fixed-footer">
+            <div class="modal-content">
+                <h4>Upload ISO file</h4>
+                <div class="file-field input-field">
+                    <div class="btn">
+                        <span>Pick File</span>
+                        <input id="upload_iso_file_picker" type="file">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+                <a href="#!" class="waves-effect waves-green btn-flat" onclick="UploadISO();">Upload</a>
+            </div>
+        </div>
+        <div id="modal_wizard_newimage" class="big-modal modal modal-fixed-footer">
+        </div>
+        <div id="modal_wizard_unattended" class="big-modal modal modal-fixed-footer">
+        </div>
+        <script src="lib/materialize.min.js"></script>
+        <script src="lib/codemirror.js"></script>
+        <script src="lib/codemirror-shell.js"></script>
+        <script src="lib/netboot-studio.js"></script>
+        <script src="lib/netboot-studio-wizard.js"></script>
+    </body>
+    <footer class="page-footer " style="position:fixed;bottom:0;left:0;width:100vw;">
+        <div class="footer-copyright">
+            <div class="container">
+            Copyright (C) 2019 James Bishop
+            </div>
+        </div>
+    </footer>
+</html>
+

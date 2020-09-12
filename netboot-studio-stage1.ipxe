@@ -1,0 +1,126 @@
+#!ipxe
+# Netboot Studio stage1.ipxe
+# 	to be embedded in ipxe binaries
+
+#    This file is part of Netboot Studio, a system for managing netboot clients
+#    Copyright (C) 2019 James Bishop (jamesbishop2006@gmail.com)
+
+# Colour index	Basic ANSI colour
+# 0	0 (black)
+# 1	1 (red)
+# 2	2 (green)
+# 3	3 (yellow)
+# 4	15 (blue or transparent)1)
+# 5	5 (magenta)
+# 6	6 (cyan)
+# 7	7 (white)
+# 9	9 (default)2)
+set color-fg 7
+set color-bg 0
+console --x 1024 --y 768 ||
+cpair --foreground ${color-fg} --background ${color-bg} 0
+cpair --foreground ${color-fg} --background ${color-bg} 1
+
+# http://ipxe.org/cfg/user-class
+# Length 4, value 'i' (0x69), 'P' (0x50), 'X' (0x48), 'E' (0x45)
+:setup-network
+echo Configuring Network
+set user-class:hex 04:69:50:48:45
+dhcp || goto network-failed
+set color-fg 1
+set color-bg 4
+cpair --foreground ${color-fg} --background ${color-bg} 0
+cpair --foreground ${color-fg} --background ${color-bg} 1
+console --picture http://${next-server}/boot-images/loading.png ||
+echo
+echo
+echo
+echo
+set netboot-server ${next-server}:6161
+set stage-2-url http://${netboot-server}/stage2.ipxe?macaddress=${mac}&arch=${buildarch}&platform=${platform}&manufacturer=${manufacturer}
+
+:chain-next-stage
+echo Chaining Stage 2
+sleep 1
+imgexec ${stage-2-url} ||failed
+
+################### FALLBACK MENU ###################
+:fallback-menu
+set color-fg 7
+set color-bg 0
+console --x 1024 --y 768 ||
+cpair --foreground ${color-fg} --background ${color-bg} 0
+cpair --foreground ${color-fg} --background ${color-bg} 1
+set submenu-timeout ${menu-timeout}
+isset ${menu-default} || set menu-default chain-next-stage
+menu Stage 1 Troubleshooting Menu
+isset ${ip} && item --gap -- ------ ip: ${ip} MAC: ${mac} ------- || item --gap -- ------ NO NETWORK!!! -------
+item --gap --
+################### list items here ###################
+item chain-next-stage Enter Stage 2
+item setup-network Re-Attempt Network Auto-Configure
+item interactive-shell  iPXE Shell
+item interactive-config iPXE Config
+item show-info Show Machine Information
+item reboot Reboot
+item exit Exit
+################### end of items list ###################
+choose --default ${menu-default} --timeout ${menu-timeout} target && goto ${target}
+
+
+:show-info
+show version ||
+show manufacturer ||
+show product ||
+show serial ||
+show asset ||
+show buildarch ||
+show platform ||
+show memsize ||
+show unixtime ||
+show uuid ||
+show bustype ||
+show busloc ||
+show busid ||
+show chip ||
+show mac ||
+show ip ||
+show netmask ||
+show gateway ||
+show dns ||
+show domain ||
+show user-class ||
+show root-path ||
+show next-server ||
+show filename ||
+prompt Press any key to continue
+goto fallback-menu
+
+# advanced
+:interactive-shell
+echo dropping to iPXE Shell
+shell || goto failed
+goto fallback-menu
+
+:interactive-config
+echo dropping to interactive config
+config || goto failed
+goto fallback-menu
+
+:failed
+echo Something failed, hopefully errors are printed above this
+prompt Press any key to show troubleshooting menu ||
+goto fallback-menu
+
+:network-failed
+echo Failed to auto-configure networking
+echo Second stage will not work!
+prompt Press any key to show troubleshooting menu ||
+goto fallback-menu
+
+:reboot
+echo rebooting
+reboot
+
+:exit
+exit 0

@@ -1,0 +1,19 @@
+#!ipxe
+# iPXE vmware esxi 6.5 EFI 
+# 	you will need to replace EFI/BOOT/BOOT.CFG with one from examples/vmware/
+
+set image-name vmware-esxi-6.5-realtek
+
+set image-root http://${next-server}/images/linux/vmware/${image-name}
+
+imgfetch ${image-root}/EFI/BOOT/BOOTX64.EFI || goto failed
+imgexec BOOTX64.EFI -c ${image-root}/netboot.cfg || goto failed
+
+:failed
+echo Failed to boot! hopefully errors are printed above this
+echo   make sure that you use the correct architecture
+prompt Press any key to reboot
+goto reboot
+
+:reboot
+reboot

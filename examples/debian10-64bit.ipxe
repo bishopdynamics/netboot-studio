@@ -1,0 +1,33 @@
+#!ipxe
+# iPXE example debian 10 x64
+#  by James Bishop (jamesbishop2006@gmail.com)
+
+set debian-netboot-web-buster-64bit http://http.us.debian.org/debian/dists/buster/main/installer-amd64/current/images/netboot/debian-installer/amd64/
+
+set this-image-base ${debian-netboot-web-buster-64bit}
+set this-image-kernel linux
+set this-image-initrd initrd.gz
+set this-image-args initrd=${this-image-initrd} vga=788 debian-installer/locale=en_US keymap=us hw-detect/load_firmware=false --- ipv6.disable=1 IPV6_DISABLE=1 net.ifnames=0 biosdevname=0
+
+set this-full-kernel-uri ${this-image-base}/${this-image-kernel}
+set this-full-initrd-uri ${this-image-base}/${this-image-initrd}
+imgfree
+imgfetch ${this-full-kernel-uri} || goto boot-failed
+imgfetch ${this-full-initrd-uri} || goto boot-failed
+imgload ${this-image-kernel} || goto boot-failed
+imgargs ${this-image-kernel} ${this-image-args} || goto boot-failed
+imgexec || goto boot-failed
+
+:failed
+echo Something failed, hopefully errors are printed above this
+prompt Press any key to reboot
+goto reboot
+
+:boot-failed
+echo Failed to boot! hopefully errors are printed above this
+echo   make sure that you use the correct architecture
+prompt Press any key to reboot
+goto reboot
+
+:reboot
+reboot

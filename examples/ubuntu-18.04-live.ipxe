@@ -1,0 +1,25 @@
+#!ipxe
+# Ubuntu 18.04 Live
+
+# NOTES: 
+#   this requires an NFS server, pointed at same root (readonly) as other storages services
+#	remember to fix /etc/interfaces during post-install http://ipxe.org/appnote/ubuntu_live
+
+# with nfs, you have to specify the full path. note initial slash, but no trailing slash
+set nfs-path /opt/tftp-root/images/linux/ubuntu/ubuntu-18.04-desktop
+
+# for fetching kernel and initrd
+set nfs-base nfs://${next-server}
+
+# for kernel arg only
+set nfs-root ${next-server}:${nfs-path}
+
+imgload ${nfs-base}${nfs-path}/casper/vmlinuz || goto failed
+imgfetch ${nfs-base}${nfs-path}/casper/initrd || goto failed
+imgargs vmlinuz initrd=initrd root=/dev/nfs boot=casper netboot=nfs nfsroot=${nfs-root} ip=dhcp systemd.mask=tmp.mount rw toram -- || goto failed
+imgexec || goto failed
+
+:failed
+echo Something failed, hopefully errors are printed above this
+prompt Press any key to reboot
+reboot

@@ -1,0 +1,7 @@
+# /etc/default/tftpd-hpa
+# for TFTP_ADDRESS always use :69 instead of 0.0.0.0:69
+
+TFTP_USERNAME="james"
+TFTP_DIRECTORY="/opt/tftp-root"
+TFTP_ADDRESS=":69"
+TFTP_OPTIONS="--secure"

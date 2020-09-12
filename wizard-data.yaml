@@ -1,0 +1,907 @@
+---
+# yamllint disable rule:line-length
+# Netboot Studio - Data for New Image Wizard
+
+#     This file is part of Netboot Studio, a system for managing netboot clients
+#     Copyright (C) 2019 James Bishop (jamesbishop2006@gmail.com)
+
+# While this data is used by the UI after being converted to JSON,
+#   I prefer YAML to define it anyway, due to superior syntax, and support for comments
+#   also it means i dont have to escape any characters, they will get escaped in the course of conversion to JSON
+
+
+# Wizard Key Types
+# Here we list valid key types shared by all wizards. This data is not actually used, its just for your reference
+# extra_keys defines what additional keys must be present to support
+# all input keys must provide:
+#     name
+#     description
+#     display
+#     default
+
+wizard-key-types:
+    boolean:
+        comment: a checkbox with string value true or false
+        extra_keys: null
+    text:
+        comment: a generic text field
+        extra_keys: null
+    text-nospace:
+        comment: a text field that only allows 0-9 A-Z - _ .
+        extra_keys: null
+    iso:
+        comment: pick from isos on server
+        extra_keys: null
+    select:
+        comment: a dropdown
+        extra_keys:
+            select_values
+
+# New Image Wizard Image Types
+# These are the options shown on page1 of the New Image wizard.
+# Here is defined the image_type that we will key everything from and the required input keys
+# required_input defines which of wizard-input-keys are necessary
+
+wizard-newimage-image-types:
+    windows:
+        display: Windows 8/8.1/10 2012R2/2016/2019 Installer (create image from ISO file)
+        details:
+        required_input:
+            - name
+            - iso
+            - create_unattended
+    debian-netboot-web:
+        display: Debian NetInstall via web (requires internet to boot)
+        details: Create a simple image which will fetch netinstall kernel and initrd from the web. No further local files needed
+        required_input:
+            - name
+            - release_debian
+            - arch_debian
+            - kernel_arguments
+            - create_unattended
+    ubuntu-netboot-web:
+        display: Ubuntu NetInstall via web (requires internet to boot)
+        details: Create a simple image which will fetch netinstall kernel and initrd from the web. No further local files needed
+        required_input:
+            - name
+            - release_ubuntu
+            - arch_debian
+            - kernel_arguments
+            - create_unattended
+    ubuntu-desktop-live:
+        display: Ubuntu Desktop Live (create image from ISO file)
+        details: Create an image that can boot into a live environment without touching disk
+        required_input:
+            - name
+            - iso
+            - kernel_arguments
+    vmware-6x:
+        display: VMware ESXi Installer (create image from ISO file)
+        details: Convert an installer ISO into a netbootable image
+        required_input:
+            - name
+            - iso
+            - create_unattended
+    gparted-live:
+        display: GParted Live (create image from ISO file)
+        details: Great for troubleshooting partition issues
+        required_input:
+            - name
+            - iso
+            - kernel_arguments
+    custom:
+        display: Custom - creates netboot.ipxe as a base to craft your own image by hand
+        details: Creates image folder with template netboot.ipxe and netboot-unattended.ipxe to get you started
+        required_input:
+            - name
+            - create_unattended
+
+# New Image Wizard Input Keys
+# Here we define individual input that images might need with all the info needed to render an input widget in html
+# type defines how the input field is rendered and must be one of wizard-key-types
+# for newimage wizard, there are many common input keys between image types,
+#   so we define them flatly and list required keys in Image Types
+
+wizard-newimage-input-keys:
+    name:
+        name: name
+        description: Name your new image (only 0-9 A-Z - _ .)
+        display: Name
+        type: text-nospace
+        default: 'New-Image'
+    iso:
+        name: iso
+        description: ISO file to copy data from
+        display: ISO file
+        type: iso
+        default: null
+    create_unattended:
+        name: create_unattended
+        description: Create an image ready to accept unattended answer files?
+        display: Support Unattended
+        type: boolean
+        default: true
+    kernel_arguments:
+        name: kernel_arguments
+        description: Additional arguments to pass to the kernel
+        display: Extra Kernel Arguments
+        type: text
+        default: ipv6.disable=1 IPV6_DISABLE=1 net.ifnames=0 biosdevname=0
+    arch_windows:
+        name: arch_windows
+        description: Which processor architecture will this support?
+        display: Architecture
+        type: select
+        select_values:
+            amd64:
+                display: 64bit
+            x86:
+                display: 32bit
+        default: amd64
+    arch_debian:
+        name: arch_debian
+        description: Which processor architecture will this support?
+        display: Architecture
+        type: select
+        select_values:
+            amd64:
+                display: 64bit
+            i386:
+                display: 32bit
+        default: amd64
+    arch_gparted:
+        name: arch_gparted
+        description: Which processor architecture will this support?
+        display: Architecture
+        type: select
+        select_values:
+            amd64:
+                display: 64bit
+            i686:
+                display: 32bit
+        default: amd64
+    release_debian:
+        name: release_debian
+        description: Which Debian release to prepare
+        display: Debian Release
+        type: select
+        select_values:
+            buster:
+                display: Debian 10 (Buster)
+                version: 10
+            stretch:
+                display: Debian 9 (Stretch)
+                version: 9
+            jessie:
+                display: Debian 8 (Jessie)
+                version: 8
+        default: buster
+    release_ubuntu:
+        name: release_ubuntu
+        description: Which Ubuntu release to prepare
+        display: Ubuntu Release
+        type: select
+        select_values:
+            eoan:
+                display: Ubuntu 19.10 (Eoan Ermine)
+                version: 19.10
+            disco:
+                display: Ubuntu 19.04 (Disco Dingo)
+                version: 19.04
+            cosmic:
+                display: Ubuntu 18.10 (Cosmic Cuttlefish)
+                version: 18.10
+            bionic:
+                display: Ubuntu 18.04 (Bionic Beaver) (LTS)
+                version: 18.04
+            artful:
+                display: Ubuntu 17.10 (Artful Aardvark)
+                version: 17.10
+            zesty:
+                display: Ubuntu 17.04 (Zesty Zapus)
+                version: 17.04
+            yakkety:
+                display: Ubuntu 16.10 (Yakkety Yak)
+                version: 16.10
+            xenial:
+                display: Ubuntu 16.04 (Xenial Xerus) (LTS)
+                version: 16.04
+        default: disco
+    release_gparted:
+        name: release_gparted
+        description: Which GParted release to prepare
+        display: GParted Release
+        type: select
+        select_values:
+            1.0.0-5:
+                display: 1.0.0-5
+                version: 1.0.0-5
+            1.0.0-3:
+                display: 1.0.0-3
+                version: 1.0.0-3
+            1.0.0-2:
+                display: 1.0.0-2
+                version: 1.0.0-2
+            1.0.0-1:
+                display: 1.0.0-1
+                version: 1.0.0-1
+            0.33.0-2:
+                display: 0.33.0-2
+                version: 0.33.0-2
+            0.33.0-1:
+                display: 0.33.0-1
+                version: 0.33.0-1
+            0.32.0-1:
+                display: 0.32.0-1
+                version: 0.32.0-1
+            0.31.0-1:
+                display: 0.31.0-1
+                version: 0.31.0-1
+            0.30.0-1:
+                display: 0.30.0-1
+                version: 0.30.0-1
+        default: 1.0.0-5
+
+# Unattended Wizard Input Keys
+# needs to use wizard-key-types
+# for newunattended wizard, there are very few common keys between supported OSs,
+#   so we dont bother trying to share them. Thus an equivalent OS Types structure is not needed
+wizard-unattended-input-keys:
+    windows:
+        display: 'Windows'
+        user_name:
+            name: user_name
+            advanced: false
+            description: Name of the primary user
+            display: User Name
+            default: User
+            type: text
+        user_password_plaintext:
+            name: user_password_plaintext
+            advanced: true
+            description: 'Indicate wether or not password is provided in plaintext. Never use plaintext'
+            display: Plaintext Password
+            default: false
+            type: boolean
+            comment: by default we hide this option and use encoded passwords
+        user_password:
+            name: user_password
+            advanced: false
+            description: 'Primary Users Password, default is "p4ssw0rd". Either plaintext (if option checked) or base64 encoded like this: echo "p4ssw0rd" | base64'
+            display: User Password
+            default: 'cDRzc3cwcmQK'
+            type: text
+            comment: 'passwords are base64 encoded, which is not at all secure'
+        user_primary_group:
+            name: user_primary_group
+            advanced: true
+            description: Primary Group to put User into
+            display: User Group
+            default: Administrators
+            type: text
+        processor_arch:
+            name: processor_arch
+            advanced: true
+            description: Processor Architecture
+            display: Architecture
+            default: amd64
+            type: select
+            comment: 'note MS uses stupid values here'
+            select_values:
+                amd64:
+                    display: 64bit
+                x86:
+                    display: 32bit
+        ui_language:
+            name: ui_language
+            advanced: true
+            description: Language to use for UI elements (image must include support for this language)
+            display: UI Language
+            default: en-US
+            comment: 'note "en-US" not "en_US". we have no way of knowing what languages an image supports, so we list everything'
+            type: select
+            select_values:
+                af-ZA:
+                    display: af-ZA - Afrikaans (South Africa)
+                am-ET:
+                    display: am-ET - Amharic (Ethiopia)
+                ar-SA:
+                    display: ar-SA - Arabic (Saudi Arabia)
+                as-IN:
+                    display: as-IN - Assamese (India)
+                az-Latn-AZ:
+                    display: az-Latn-AZ - Azeri (Latin, Azerbaijan)
+                bg-BG:
+                    display: bg-BG - Bulgarian (Bulgaria)
+                bn-BD:
+                    display: bn-BD - Bengali (Bangladesh)
+                bn-IN:
+                    display: bn-IN - Bengali (India)
+                bs-Cyrl-BA:
+                    display: bs-Cyrl-BA - Bosnian (Cyrillic, Bosnia and Herzegovina)
+                bs-Latn-BA:
+                    display: bs-Latn-BA - Bosnian (Latin, Bosnia and Herzegovina)
+                ca-ES:
+                    display: ca-ES - Catalan (Catalan)
+                cs-CZ:
+                    display: cs-CZ - Czech (Czech Republic)
+                cy-GB:
+                    display: cy-GB - Welsh (United Kingdom)
+                da-DK:
+                    display: da-DK - Danish (Denmark)
+                de-DE:
+                    display: de-DE - German (Germany)
+                el-GR:
+                    display: el-GR - Greek (Greece)
+                en-US:
+                    display: en-US - English (United States)
+                es-ES:
+                    display: es-ES - Spanish (Spain)
+                et-EE:
+                    display: et-EE - Estonian (Estonia)
+                eu-ES:
+                    display: eu-ES - Basque (Basque)
+                fa-IR:
+                    display: fa-IR - Persian
+                fi-FI:
+                    display: fi-FI - Finnish (Finland)
+                fil-PH:
+                    display: fil-PH - Filipino (Philippines)
+                fr-FR:
+                    display: fr-FR - French (France)
+                ga-IE:
+                    display: ga-IE - Irish (Ireland)
+                gl-ES:
+                    display: gl-ES - Galician (Galician)
+                gu-IN:
+                    display: gu-IN - Gujarati (India)
+                ha-Latn-NG:
+                    display: ha-Latn-NG - Hausa (Latin, Nigeria)
+                he-IL:
+                    display: he-IL - Hebrew (Israel)
+                hi-IN:
+                    display: hi-IN - Hindi (India)
+                hr-HR:
+                    display: hr-HR - Croatian (Croatia)
+                hu-HU:
+                    display: hu-HU - Hungarian (Hungary)
+                hy-AM:
+                    display: hy-AM - Armenian (Armenia)
+                id-ID:
+                    display: id-ID - Indonesian (Indonesia)
+                ig-NG:
+                    display: ig-NG - Igbo (Nigeria)
+                is-IS:
+                    display: is-IS - Icelandic (Iceland)
+                it-IT:
+                    display: it-IT - Italian (Italy)
+                iu-Latn-CA:
+                    display: iu-Latn-CA - Inuktitut (Latin, Canada)
+                ja-JP:
+                    display: ja-JP - Japanese (Japan)
+                ka-GE:
+                    display: ka-GE - Georgian (Georgia)
+                kk-KZ:
+                    display: kk-KZ - Kazakh (Kazakhstan)
+                km-KH:
+                    display: km-KH - Khmer (Cambodia)
+                kn-IN:
+                    display: kn-IN - Kannada (India)
+                ko-KR:
+                    display: ko-KR - Korean (Korea)
+                kok-IN:
+                    display: kok-IN - Konkani (India)
+                ky-KG:
+                    display: ky-KG - Kyrgyz (Kyrgyzstan)
+                lb-LU:
+                    display: lb-LU - Luxembourgish (Luxembourg)
+                lt-LT:
+                    display: lt-LT - Lithuanian (Lithuania)
+                lv-LV:
+                    display: lv-LV - Latvian (Latvia)
+                mi-NZ:
+                    display: mi-NZ - Maori (New Zealand)
+                mk-MK:
+                    display: mk-MK - Macedonian (Former Yugoslav Republic of Macedonia)
+                ml-IN:
+                    display: ml-IN - Malayalam (India)
+                mr-IN:
+                    display: mr-IN - Marathi (India)
+                ms-BN:
+                    display: ms-BN - Malay (Brunei Darussalam)
+                ms-MY:
+                    display: ms-MY - Malay (Malaysia)
+                mt-MT:
+                    display: mt-MT - Maltese (Malta)
+                nb-NO:
+                    display: nb-NO - Norwegian, Bokmål (Norway)
+                ne-NP:
+                    display: ne-NP - Nepali (Nepal)
+                nl-NL:
+                    display: nl-NL - Dutch (Netherlands)
+                nn-NO:
+                    display: nn-NO - Norwegian, Nynorsk (Norway)
+                nso-ZA:
+                    display: nso-ZA - Sesotho sa Leboa (South Africa)
+                or-IN:
+                    display: or-IN - Oriya (India)
+                pa-IN:
+                    display: pa-IN - Punjabi (India)
+                pl-PL:
+                    display: pl-PL - Polish (Poland)
+                pt-BR:
+                    display: pt-BR - Portuguese (Brazil)
+                pt-PT:
+                    display: pt-PT - Portuguese (Portugal)
+                quz-PE:
+                    display: quz-PE - Quechua (Peru)
+                ro-RO:
+                    display: ro-RO - Romanian (Romania)
+                ru-RU:
+                    display: ru-RU - Russian (Russia)
+                si-LK:
+                    display: si-LK - Sinhala (Sri Lanka)
+                sk-SK:
+                    display: sk-SK - Slovak (Slovakia)
+                sl-SI:
+                    display: sl-SI - Slovenian (Slovenia)
+                sq-AL:
+                    display: sq-AL - Albanian (Albania)
+                sr-Cyrl-CS:
+                    display: sr-Cyrl-CS - Serbian (Cyrillic, Serbia)
+                sr-Latn-CS:
+                    display: sr-Latn-CS - Serbian (Latin, Serbia)
+                sv-SE:
+                    display: sv-SE - Swedish (Sweden)
+                sw-KE:
+                    display: sw-KE - Kiswahili (Kenya)
+                ta-IN:
+                    display: ta-IN - Tamil (India)
+                te-IN:
+                    display: te-IN - Telugu (India)
+                th-TH:
+                    display: th-TH - Thai (Thailand)
+                tn-ZA:
+                    display: tn-ZA - Setswana (South Africa)
+                tr-TR:
+                    display: tr-TR - Turkish (Turkey)
+                tt-RU:
+                    display: tt-RU - Tatar (Russia)
+                uk-UA:
+                    display: uk-UA - Ukrainian (Ukraine)
+                ur-PK:
+                    display: ur-PK - Urdu (Islamic Republic of Pakistan)
+                uz-Latn-UZ:
+                    display: uz-Latn-UZ - Uzbek (Latin, Uzbekistan)
+                vi-VN:
+                    display: vi-VN - Vietnamese (Vietnam)
+                xh-ZA:
+                    display: xh-ZA - isiXhosa (South Africa)
+                yo-NG:
+                    display: yo-NG - Yoruba (Nigeria)
+                zh-CN:
+                    display: zh-CN - Chinese (PRC)
+                zh-HK:
+                    display: zh-HK - Chinese (Hong Kong S.A.R.)
+                zh-TW:
+                    display: zh-TW - Chinese (Taiwan)
+                zu-ZA:
+                    display: zu-ZA - isiZulu (South Africa)
+        input_locale:
+            name: input_locale
+            advanced: true
+            description: 'Locale to use for mapping keyboard input. You can use one of UI Language, like en_US, or hex like this: 0409:00000409'
+            display: Input Locale
+            default: '0409:00000409'
+            type: text
+            comment: 'disgusting'
+        hostname:
+            name: hostname
+            advanced: false
+            description: Name to identify this machine on the network
+            display: Hostname
+            default: User-PC
+            type: text-nospace
+        network_location:
+            name: network_location
+            advanced: true
+            description: Indicates the type of network this machine will be connected to
+            display: Network Location
+            default: Home
+            type: text
+        product_key:
+            name: product_key
+            advanced: false
+            description: Windows Product Key. 5 hyphen-separated blocks of 5 chars
+            display: Product Key
+            default: W269N-WFGWX-YVC9B-4J6C9-T83GX
+            type: text
+            comment: 'this key passes muster to allow installation, but is not otherwize valid'
+        skip_rearm:
+            name: skip_rearm
+            advanced: true
+            description: Skip Re-Arming of the installed OS
+            display: Skip Re-Arm
+            default: true
+            type: boolean
+            comment: 'this is actually a boolint, value will be converted at final stage'
+        enable_lua:
+            name: enable_lua
+            advanced: true
+            description: Enable LUA
+            display: Enable LUA
+            default: true
+            type: boolean
+        skip_auto_activation:
+            name: skip_auto_activation
+            advanced: true
+            description: Skip automatically activating Windows
+            display: Skip Auto-Activation
+            default: true
+            type: boolean
+        ceip_enabled:
+            name: ceip_enabled
+            advanced: true
+            description: Participate in Customer Experience Improvement Program?
+            display: Enable CEIP
+            default: false
+            type: boolean
+            comment: 'this is actually a boolint, value will be converted at final stage'
+        disable_auto_day_light_time_set:
+            name: disable_auto_day_light_time_set
+            advanced: true
+            description: Disable automatically adjusting clock for daylight savings
+            display: Disable Daylight Savings Adjustment
+            default: false
+            type: boolean
+        protect_your_pc:
+            name: protect_your_pc
+            advanced: true
+            description: Indicate which mode to put Protect Your PC into
+            display: Protect Your PC Mode
+            default: 3
+            type: select
+            comment: 'value is an int, and two options have the same effect. leaving blank causes the user to be prompted so we dont include that option'
+            select_values:
+                3:
+                    display: '3 - Disable Express Settings'
+                2:
+                    display: '2 - Enable Express Settings'
+                1:
+                    display: '1 - Enable Express Settings'
+    debian:
+        display: 'Debian-based Linux distro'
+        apt-cdrom-set-first:
+            name: apt-cdrom-set-first
+            advanced: true
+            description: Load repositories from CD before others
+            display: Prioritize CD Repos
+            type: boolean
+            default: false
+        apt-cdrom-set-next:
+            name: apt-cdrom-set-next
+            advanced: true
+            description: Load repositories from CD other than the one booted from
+            display: Load Repos From Other CD
+            type: boolean
+            default: false
+        apt-cdrom-set-failed:
+            name: apt-cdrom-set-failed
+            advanced: true
+            description: I have no idea what this does
+            display: CD Repos Failed
+            type: boolean
+            default: false
+        apt-setup-nonfree:
+            name: apt-setup-nonfree
+            advanced: true
+            description: Use nonfree repositories
+            display: Use nonfree
+            type: boolean
+            default: true
+        apt-setup-contrib:
+            name: apt-setup-contrib
+            advanced: true
+            description: Use contrib repositories
+            display: Use contrib
+            type: boolean
+            default: true
+        mirror-country:
+            name: mirror-country
+            advanced: true
+            description: Country to look for mirror
+            display: Mirror Country
+            type: text
+            default: manual
+        mirror-protocol:
+            name: mirror-protocol
+            advanced: true
+            description: Protocol to use for talking to mirror
+            display: Mirror Protocol
+            type: text
+            default: http
+        mirror-hostname:
+            name: mirror-hostname
+            advanced: true
+            description: Hostname of mirror, can be fully-qualified, or local (no domain)
+            display: Mirror Hostname
+            type: text
+            default: http.us.debian.org
+        mirror-directory:
+            name: mirror-directory
+            advanced: true
+            description: Directory within mirror to use
+            display: Mirror Directory
+            type: text
+            default: debian
+        mirror-proxy:
+            name: mirror-proxy
+            advanced: false
+            description: SOCKS proxy to use for connecting to mirror
+            display: Mirror Proxy
+            type: text
+            default: ''
+        popularity-contest:
+            name: popularity-contest
+            advanced: true
+            description: Participate in package usage survey
+            display: Participate in Package Usage Survey
+            type: boolean
+            default: false
+        install-keepconsoles:
+            name: install-keepconsoles
+            advanced: true
+            description: Keep consoles. not totally sure what this does
+            display: Keep Consoles
+            type: boolean
+            default: true
+        install-rebootinprogress:
+            name: install-rebootinprogress
+            advanced: true
+            description: What type of Reboot in Progress message to use
+            display: Reboot in Progress Type
+            type: text
+            default: note
+        postfix-mainmailertype:
+            name: postfix-mainmailertype
+            advanced: true
+            description: Configuration of Postfix mail server
+            display: Postfix Main Mailer Type
+            type: text
+            default: select No configuration
+        hw-detect-loadfirmware:
+            name: hw-detect-loadfirmware
+            advanced: true
+            description: Indicate if you would like the installer to detect and attempt to load firmware for devices whos firmware is not provided in the kernel
+            display: Detect and Try to Load Firmware for devices
+            type: boolean
+            default: false
+        extra-software-tasksel:
+            name: extra-software-tasksel
+            advanced: false
+            description: Instruct Tasksel which options to install
+            display: Tasksel Instructions
+            type: text
+            default: 'tasksel/first multiselect standard,xfce-desktop'
+        extra-software-packages:
+            name: extra-software-packages
+            advanced: false
+            description: Additional software packages to be installed from apt after Tasksel has run
+            display: Extra Apt Packages
+            type: text
+            default: 'dnsutils fping openssh-server psmisc sudo nano vim htop curl ntp net-tools python python-dev python-pip python-virtualenv python-yaml screen'
+        user-name:
+            name: user-name
+            advanced: false
+            description: Name of the user, to be used in file paths etc
+            display: User Name
+            type: text
+            default: user
+        user-fullname:
+            name: user-fullname
+            advanced: false
+            description: Full name of user, to be used in pretty display of names
+            display: User Full Name
+            type: text
+            default: User Simpson
+        user-password:
+            name: user-password
+            advanced: false
+            description: 'MD5 hash of user password. Default is "p4ssw0rd". Generate using: printf "p4ssw0rd" | mkpasswd -s -m md5'
+            display: User Password Hash
+            type: text
+            default: '$1$GRSTnQ8M$VAvtI0J1t3Anv6VETbB7/0'
+        user-groups:
+            name: user-groups
+            advanced: false
+            description: Additional groups to place user into
+            display: Extra User Groups
+            type: text
+            default: 'audio cdrom video staff wheel sudo ssh netdev everyone admin localaccounts plugdev dialout adm dip lpadmin'
+        locale:
+            name: locale
+            advanced: false
+            description: Locale to use for keyboard input, etc
+            display: Locale
+            type: text
+            default: en_US
+        keymap:
+            name: keymap
+            advanced: false
+            description: Keyboard layout, usually country or region specific
+            display: Keyboard Map
+            type: text
+            default: us
+        time-zone:
+            name: time-zone
+            advanced: false
+            description: Time Zone to use for clock
+            display: Time Zone
+            type: text
+            default: 'America/Los Angeles'
+        clock-utc:
+            name: clock-utc
+            advanced: true
+            description: Should the hardware clock be treated as UTC timezone?
+            display: UTC HW Clock
+            type: boolean
+            default: true
+        clock-ntp:
+            name: clock-ntp
+            advanced: true
+            description: Should the clock sync to an NTP server?
+            display: Sync Clock to NTP
+            type: boolean
+            default: true
+        clock-ntpserver:
+            name: clock-ntpserver
+            advanced: true
+            description: Hostname of NTP server to sync to
+            display: NTP Server
+            type: text
+            default: 'time1.google.com'
+        root-password:
+            name: root-password
+            advanced: false
+            description: 'MD5 hash of root password. Default is "p4ssw0rd". Generate using: printf "p4ssw0rd" | mkpasswd -s -m md5'
+            display: Root Password Hash
+            type: text
+            default: '$1$GRSTnQ8M$VAvtI0J1t3Anv6VETbB7/0'
+        net-linux-dhcp4-timeout:
+            name: net-linux-dhcp4-timeout
+            advanced: true
+            description: Timeout for DHCP v4
+            display: DHCPv4 Timeout
+            type: integer
+            default: 60
+        net-linux-dhcp6-timeout:
+            name: net-linux-dhcp6-timeout
+            advanced: true
+            description: Timeout for DHCP v6
+            display: DHCPv6 Timeout
+            type: integer
+            default: 2
+        partman-auto-disk:
+            name: partman-auto-disk
+            advanced: false
+            description: Which disk should automatic partitioning use, should be something like /dev/sda
+            display: Install to Disk
+            type: text
+            default: /dev/sda
+        partman-auto-method:
+            name: partman-auto-method
+            advanced: true
+            description: Which method should automatic partitioning use
+            display: Partitioning Method
+            type: text
+            default: regular
+        partman-lvm-deviceremovelvm:
+            name: partman-lvm-deviceremovelvm
+            advanced: true
+            description: Remove any existing partitions, even if they are part of LVM
+            display: Remove LVM Partitions
+            type: boolean
+            default: true
+        partman-md-deviceremovemd:
+            name: partman-md-deviceremovemd
+            advanced: true
+            description: Remove any existing partitions, even if they are a member of a raid array using MDADM
+            display: Remove RAID Partitions
+            type: boolean
+            default: true
+        partman-auto-recipe:
+            name: partman-auto-recipe
+            advanced: true
+            description: Which recipe should automatic partitioning use
+            display: Partitioning Recipe
+            type: text
+            default: atomic
+        partman-partitioning-confirmwritenewlabel:
+            name: partman-partitioning-confirmwritenewlabel
+            advanced: true
+            description: Confirm labels of partitions to disk
+            display: Confirm Partition Label
+            type: boolean
+            default: true
+        partman-choosepartition:
+            name: partman-choosepartition
+            advanced: true
+            description: 'I am not totally clear what it does. value needs to be "finish"'
+            display: Choose Partition?
+            type: text
+            default: finish
+        partman-confirm:
+            name: partman-confirm
+            advanced: true
+            description: Confirm writing changes to disk
+            display: Confirm Partition Changes
+            type: boolean
+            default: true
+        partman-confirmnooverwrite:
+            name: partman-confirmnooverwrite
+            advanced: true
+            description: I cant remember what this does
+            display: Confirm No Overwrite
+            type: boolean
+            default: true
+        partman-efi-nonefisystem:
+            name: partman-efi-nonefisystem
+            advanced: true
+            description: Install EFI bootloader even though installer was not booted from EFI, and it might not be supported
+            display: Stubborn EFI
+            type: boolean
+            default: true
+        grub-only-debian:
+            name: grub-only-debian
+            advanced: true
+            description: Dont bother playing nice with any other operating systems
+            display: Only Debian (GRUB)
+            type: boolean
+            default: true
+        grub-bootdev:
+            name: grub-bootdev
+            advanced: true
+            description: Which device should grub be installed to. "default" means use value of partman-auto-disk
+            display: Boot Device (GRUB)
+            type: text
+            default: default
+    vmware:
+        display: 'VMware ESXi'
+        root-password:
+            name: root-password
+            advanced: false
+            description: 'MD5 hash of root password. Default is "p4ssw0rd". Generate using: printf "p4ssw0rd" | mkpasswd -s -m md5'
+            display: Root Password Hash
+            type: text
+            default: '$1$GRSTnQ8M$VAvtI0J1t3Anv6VETbB7/0'
+        network-config:
+            name: network-config
+            advanced: false
+            description: 'Configuration for networking, used both by installer and resulting installation. Static: "--bootproto=static --ip=192.168.1.100 --netmask=255.255.255.0 --gateway=192.168.1.1 --nameserver=192.168.1.1 --hostname=ESXHOST1"'
+            display: Network Config
+            type: text
+            default: '--bootproto=dhcp --device=vmnic0'
+            comment: 'for static: --bootproto=static --ip=192.168.1.100 --netmask=255.255.255.0 --gateway=192.168.1.1 --nameserver=192.168.1.1 --hostname=ESXHOST1'
+        network-ipv6-enabled:
+            name: network-ipv6-enabled
+            advanced: false
+            description: Indicate wether IPv6 should be supported
+            display: Enable IPv6
+            type: boolean
+            default: false
+        suppress-shell-warning:
+            name: suppress-shell-warning
+            advanced: false
+            description: Suppress warning about shell being enabled
+            display: Suppress Shell Warning
+            type: boolean
+            default: true
+            comment: 'actually boolint, will be converted further on'
+        esxi-shell-timeout:
+            name: esxi-shell-timeout
+            advanced: false
+            description: Should the esxi shell time out
+            display: ESXi Shell Timeout
+            type: boolean
+            default: true
+            comment: 'actually boolint, will be converted further on'

@@ -1,0 +1,1097 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"BUI",
+				"BUILT_IN_IMAGE_DEFAULT_NAME"
+			],
+			[
+				"drop",
+				"dropdown_images"
+			],
+			[
+				"BUIL",
+				"BUILT_IN_UNATTENDED_DEFAULT_NAME"
+			],
+			[
+				"una",
+				"unattended_num"
+			],
+			[
+				"UNA",
+				"UNATTENDED_LIST"
+			],
+			[
+				"IMA",
+				"IMAGE_METADATA_DISPLAY_KEYS"
+			],
+			[
+				"DEF",
+				"BUILT_IN_IMAGE_DEFAULT_NAME"
+			],
+			[
+				"IMAS",
+				"IMAGES_FOLDER"
+			],
+			[
+				"CreateDr",
+				"CreateDropdownUnattendeds"
+			],
+			[
+				"dropw",
+				"dropdown_images"
+			],
+			[
+				"Create",
+				"CreateDropdownImages"
+			],
+			[
+				"client",
+				"client_macaddress"
+			],
+			[
+				"PO",
+				"PORT_NUMBER"
+			],
+			[
+				"BI",
+				"BUILT_IN_IMAGE_DEFAULT_NAME"
+			],
+			[
+				"BUILT_IN_UNATTENDED_DEFAULT",
+				"BUILT_IN_UNATTENDED_DEFAULT_NAME"
+			],
+			[
+				"ima",
+				"image_name"
+			],
+			[
+				"IMAGE",
+				"IMAGES_LIST"
+			],
+			[
+				"I",
+				"IMAGES_LIST"
+			],
+			[
+				"netbo",
+				"netboot-server"
+			],
+			[
+				"has_ne",
+				"has_netboot-unattended"
+			],
+			[
+				"has_",
+				"has_netboot-unattended"
+			],
+			[
+				"IMAG",
+				"IMAGES_LIST"
+			],
+			[
+				"IM",
+				"IMAGES_LIST"
+			],
+			[
+				"image_wi",
+				"image_windows_winpeshl"
+			],
+			[
+				"BUILT",
+				"BUILT_IN_UNATTENDED_DEFAULT_NAME"
+			],
+			[
+				"B",
+				"BUILT_IN_SCRIPT_DEFAULT_NAME"
+			],
+			[
+				"BUILT_IN_U",
+				"BUILT_IN_UNATTENDED_DEFAULT_NAME"
+			],
+			[
+				"BUILT_IN_SCRIPT_D",
+				"BUILT_IN_SCRIPT_DEFAULT_NAME"
+			],
+			[
+				"BU",
+				"BUILT_IN_SCRIPT_STANDBY_NAME"
+			],
+			[
+				"Bui",
+				"BUILT_IN_SCRIPT_STANDBY"
+			],
+			[
+				"Una",
+				"Unattended"
+			],
+			[
+				"CreateMat",
+				"CreateMaterialDropdownUnattendeds"
+			],
+			[
+				"sele",
+				"selected_script"
+			],
+			[
+				"this",
+				"this_entry"
+			],
+			[
+				"CreateD",
+				"CreateMaterialDropdownScripts"
+			],
+			[
+				"tab",
+				"tabs-div"
+			],
+			[
+				"wi",
+				"wide-button"
+			],
+			[
+				"unat",
+				"unattended_edit_options"
+			],
+			[
+				"clie",
+				"clients_menu_item"
+			],
+			[
+				"im",
+				"images_menu"
+			],
+			[
+				"cli",
+				"clients_menu"
+			],
+			[
+				"submen",
+				"submenu_item2"
+			],
+			[
+				"refresh",
+				"RefreshFileLists"
+			],
+			[
+				"image",
+				"image-path"
+			],
+			[
+				"this-i",
+				"this-image-base"
+			],
+			[
+				"FALLB",
+				"FALLBACK_EMPTY"
+			],
+			[
+				"FA",
+				"FALLBACK_UNATTENDED"
+			],
+			[
+				"CreateDropdownUn",
+				"CreateDropdownUnattendedsEditor"
+			],
+			[
+				"FI",
+				"FILE_UPPER"
+			],
+			[
+				"FIL",
+				"FILE_LOWER"
+			],
+			[
+				"ann",
+				"announce_step"
+			],
+			[
+				"PERMS",
+				"PERMS_USER"
+			],
+			[
+				"FULL",
+				"SCRIPT_FULL_PATH"
+			],
+			[
+				"SC",
+				"SCRIPT_FILENAME"
+			],
+			[
+				"ISO",
+				"ISO_FILE"
+			],
+			[
+				"Refre",
+				"RefreshFileLists"
+			],
+			[
+				"Re",
+				"Resources"
+			],
+			[
+				"DE",
+				"DEFAULT_FRESH_ENTRY"
+			],
+			[
+				"cre",
+				"create_dropdown_unattendeds"
+			],
+			[
+				"create_d",
+				"create_dropdown_scripts"
+			],
+			[
+				"UN",
+				"UNATTENDEDS_LIST"
+			],
+			[
+				"SCR",
+				"SCRIPTS_LIST"
+			],
+			[
+				"selec",
+				"selected_entry"
+			],
+			[
+				"oncha",
+				"onchange_unattendeds"
+			],
+			[
+				"url",
+				"urlparams"
+			],
+			[
+				"respond_una",
+				"respond_unattendeds"
+			],
+			[
+				"cle",
+				"clean_url"
+			],
+			[
+				"un",
+				"unattended_path"
+			],
+			[
+				"clien",
+				"client_macaddress"
+			],
+			[
+				"bac",
+				"background-image"
+			],
+			[
+				"ba",
+				"background-image"
+			],
+			[
+				"co",
+				"color-bg"
+			],
+			[
+				"col",
+				"color-fg"
+			],
+			[
+				"stage1",
+				"stage1url"
+			],
+			[
+				"SS",
+				"SSH_PID"
+			],
+			[
+				"REM",
+				"REMOTE_PORT"
+			],
+			[
+				"MA",
+				"REMOTE_MACHINE"
+			],
+			[
+				"mac",
+				"macaddress"
+			],
+			[
+				"Exe",
+				"Exception"
+			],
+			[
+				"file",
+				"file_list"
+			],
+			[
+				"respo",
+				"respond_clients"
+			],
+			[
+				"CL",
+				"CLIENT_LIST_FILE"
+			],
+			[
+				"json",
+				"json_list"
+			],
+			[
+				"PRE",
+				"PREFIX"
+			],
+			[
+				"WEBSOCK",
+				"WEBSOCKET_PROCESS"
+			],
+			[
+				"seek",
+				"seekVideoPlay"
+			],
+			[
+				"ms",
+				"msg_payload"
+			],
+			[
+				"bro",
+				"broadcast_message"
+			],
+			[
+				"data",
+				"datapoint_id"
+			],
+			[
+				"SAM",
+				"SAMPLE_STDDEV"
+			],
+			[
+				"SAMPL",
+				"SAMPLE_AVG"
+			],
+			[
+				"SA",
+				"SAMPLE_DATA"
+			],
+			[
+				"GRAPH_CO",
+				"GRAPH_COLOR_STDDEV"
+			],
+			[
+				"GRAPH_COL",
+				"GRAPH_COLOR_VALUE"
+			],
+			[
+				"THIS_MO",
+				"THIS_MODULE_NAME"
+			],
+			[
+				"THIS_MOD",
+				"THIS_MODULE_NAME"
+			],
+			[
+				"GRAPH_Y",
+				"GRAPH_Y_UNITS"
+			],
+			[
+				"DA",
+				"DATA_NAME"
+			],
+			[
+				"CYCLE_EN",
+				"CYCLE_END_CLEAN"
+			],
+			[
+				"CY",
+				"CYCLE_END_STAMP"
+			],
+			[
+				"THIS_SAMP",
+				"THIS_SAMPLE_TIME_DIFF"
+			],
+			[
+				"THIS_SA",
+				"THIS_SAMPLE_TIME_SECONDS"
+			],
+			[
+				"THI",
+				"THIS_SAMPLE_TIME"
+			],
+			[
+				"WEB",
+				"WEB_IMAGE_WIDTH"
+			],
+			[
+				"WE",
+				"WEB_IMAGE_WIDTH"
+			],
+			[
+				"CUR",
+				"CURRENT_STDDEV"
+			],
+			[
+				"CU",
+				"CURRENT_AVG"
+			],
+			[
+				"DATA",
+				"DATA_FILE"
+			],
+			[
+				"THIS_nu",
+				"THIS_NUM_GRAPHS"
+			],
+			[
+				"THIS",
+				"THIS_WEB_SIZE"
+			],
+			[
+				"THIS_WE",
+				"THIS_WEB_SIZE"
+			],
+			[
+				"THIS_WEB_S",
+				"THIS_WEB_SIZE_UNITS"
+			],
+			[
+				"THIS_S",
+				"THIS_SCREENRC"
+			],
+			[
+				"MOD",
+				"MODULE_CMD"
+			],
+			[
+				"MO",
+				"MODULE_CMD"
+			],
+			[
+				"_get",
+				"_get_forever"
+			],
+			[
+				"da",
+				"datagrapher"
+			],
+			[
+				"_do",
+				"_do_status_services"
+			],
+			[
+				"T",
+				"TARGET_THING"
+			],
+			[
+				"_cre",
+				"_create_data_page"
+			],
+			[
+				"_gra",
+				"_graph_data"
+			],
+			[
+				"_ga",
+				"_gather_pingtest_data"
+			],
+			[
+				"_crea",
+				"_create_all_data_pages"
+			],
+			[
+				"_cr",
+				"_create_web_index"
+			],
+			[
+				"D",
+				"DATA_AVG_TIME"
+			],
+			[
+				"IN",
+				"GRAPH_INTERVAL"
+			],
+			[
+				"WEB_I",
+				"WEB_IMAGE_WIDTH"
+			],
+			[
+				"THIS_",
+				"THIS_RANGE"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "netboot-studio.py",
+			"settings":
+			{
+				"buffer_size": 61625,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"remoe",
+				"Package Control: Remove Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"markdow",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"markdo",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"package",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"mar",
+				"MarkdownLivePreview: Edit Current File"
+			],
+			[
+				"markup",
+				"MarkdownLivePreview: Edit Current File"
+			],
+			[
+				"read",
+				"Preferences: MarkdownLivePreview Settings"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"remove p",
+				"Package Control: Remove Package"
+			],
+			[
+				"insall",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 124.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/james/projects/netboot-studio",
+		"/Users/james/projects/netboot-studio/web",
+		"/Users/james/projects/netboot-studio/web/lib"
+	],
+	"file_history":
+	[
+		"/Users/james/projects/netboot-studio/README.md",
+		"/Users/james/projects/netboot-studio/web/lib/netboot-studio.js",
+		"/Users/james/projects/netboot-studio/web/index.html",
+		"/Users/james/projects/netboot-studio/lib/netboot-studio.js",
+		"/Users/james/projects/netboot-studio/netboot-studio-stage1.ipxe",
+		"/Users/james/projects/netboot-studio/deploy.sh",
+		"/Users/james/projects/netboot-studio/build.sh",
+		"/Users/james/projects/netboot-studio/docs/TODO.md",
+		"/Users/james/projects/netboot-studio/CHANGELOG.md",
+		"/Users/james/projects/netboot-studio/examples/windows/windows10-unattend-basic.xml",
+		"/Users/james/projects/aunt-0.3/aunt/__init__.py",
+		"/Users/james/projects/netboot-studio/prep/create_windows_image.sh",
+		"/Users/james/projects/netboot-studio/TODO.md",
+		"/Users/james/projects/netboot-studio/docs/images.md",
+		"/Users/james/projects/netboot-studio/sketch.py",
+		"/Users/james/projects/netboot-studio/docs/setup.md",
+		"/Users/james/projects/netboot-studio/util/prep_windows_from_iso.sh",
+		"/Users/james/projects/netboot-studio/sketch.txt",
+		"/Users/james/projects/netboot-studio/.gitignore",
+		"/Users/james/projects/netboot-studio/examples/gparted-64bit.ipxe",
+		"/Users/james/projects/netboot-studio/examples/windows-10-unattended.ipxe",
+		"/Users/james/projects/netboot-studio/examples/vmware/esx-6.5-realtek_netboot_unattended.cfg",
+		"/Users/james/projects/netboot-studio/VERSION",
+		"/Users/james/projects/netboot-studio/client-list.json",
+		"/Users/james/projects/netboot-studio/menu.yaml",
+		"/Users/james/projects/netboot-studio/cli-mgr.py",
+		"/Users/james/projects/netboot-studio/scripts/standby-loop.ipxe",
+		"/Users/james/projects/netboot-studio/examples/vmware/convert_modules_to_lowercase_6.5.sh",
+		"/Users/james/projects/netboot-studio/examples/vmware/convert_modules_to_lowercase_6.0.sh",
+		"/Users/james/projects/netboot-studio/examples/interactive-menu.ipxe",
+		"/Users/james/projects/netboot-studio/run-netboot-studio.sh",
+		"/Users/james/projects/netboot-studio/run-ipxe-studio.sh",
+		"/Users/james/projects/netboot-studio/netboot-studio.py",
+		"/Users/james/projects/netboot-studio/common.sh",
+		"/Users/james/projects/bishop-netboot/ipxe-studio.py",
+		"/Users/james/projects/bishop-netboot/README.md",
+		"/Users/james/projects/bishop-netboot/docs/roadmap.md",
+		"/Users/james/projects/bishop-netboot/util/prep_windows_from_iso.sh",
+		"/Users/james/projects/bishop-netboot/VERSION",
+		"/Users/james/projects/bishop-netboot/CHANGELOG.md",
+		"/Users/james/projects/bishop-netboot/docs/working.md",
+		"/Users/james/projects/bishop-netboot/examples/debian/debian-default-user.cfg",
+		"/Users/james/projects/bishop-netboot/examples/debian/debian-nvidia.cfg",
+		"/Users/james/projects/bishop-netboot/examples/debian/debian9-preseed-nogui-basic.cfg",
+		"/Users/james/projects/bishop-netboot/.gitignore",
+		"/Users/james/projects/bishop-netboot/examples/vmware/vmware-esxi-kickstart-basic.cfg",
+		"/Users/james/projects/bishop-netboot/examples/windows-10.ipxe",
+		"/Users/james/projects/bishop-netboot/examples/windows-10-unattended.ipxe",
+		"/Users/james/projects/bishop-netboot/build.sh",
+		"/Users/james/projects/bishop-netboot/scripts/ubuntu-18.04-live.ipxe",
+		"/Users/james/projects/bishop-netboot/scripts/ubuntu-19.04-live.ipxe",
+		"/Users/james/projects/bishop-netboot/ipxe-studio-stage1.ipxe",
+		"/Users/james/projects/bishop-netboot/scripts/standby-loop.ipxe",
+		"/Users/james/projects/bishop-netboot/scripts/interactive-menu.ipxe",
+		"/Users/james/projects/bishop-netboot/scripts/vmware-esxi-65-efi.ipxe",
+		"/Users/james/projects/bishop-netboot/scripts/vmware-esxi-65-efi-unattended.ipxe",
+		"/Users/james/projects/bishop-netboot/scripts/vmware-esxi-60-efi.ipxe",
+		"/Users/james/projects/bishop-netboot/scripts/vm-docker.ipxe",
+		"/Users/james/projects/Notes/ideas/pxe-manager.md",
+		"/Users/james/projects/bishop-netboot/scripts/gparted-32bit.ipxe",
+		"/Users/james/projects/bishop-netboot/scripts/debian9-32bit.ipxe",
+		"/Users/james/projects/bishop-netboot/LICENSE.md",
+		"/Users/james/projects/bishop-netboot/examples/vmware/convert_modules_to_lowercase_6.5.sh",
+		"/Users/james/projects/bishop-netboot/examples/vmware/convert_modules_to_lowercase_6.0.sh",
+		"/Users/james/projects/bishop-netboot/common.sh",
+		"/Users/james/projects/bishop-netboot/deploy.sh",
+		"/Users/james/projects/bishop-netboot/run-ipxe-studio.sh",
+		"/Users/james/projects/bishop-netboot/scripts/debian9-64bit-unattended.ipxe",
+		"/Users/james/projects/bishop-netboot/docs/changelog.md",
+		"/Users/james/projects/bishop-netboot/examples/vmware/esx-6.5-realtek_netboot_unattended.cfg",
+		"/Users/james/projects/bishop-netboot/unattended/vmware-esxi-basic.cfg",
+		"/Users/james/projects/bishop-netboot/examples/vmware/vmware-esxi-6.0_realtek_boot.cfg",
+		"/Users/james/projects/bishop-netboot/examples/vmware/vmware-esxi-6.5_realtek_boot.cfg",
+		"/Users/james/projects/bishop-netboot/examples/vmware/6.5_convert_files_to_upper.sh",
+		"/Users/james/projects/bishop-netboot/examples/vmware-esxi-6.5_boot.cfg",
+		"/Users/james/projects/bishop-netboot/examples/vmware-esxi-6.0_boot.cfg",
+		"/Users/james/projects/bishop-netboot/examples/properties.yaml",
+		"/Users/james/projects/bishop-netboot/prep_windows_from_iso.sh",
+		"/Users/james/projects/bishop-netboot/scripts/test-windows10-unattended.ipxe",
+		"/Users/james/projects/bishop-netboot/WORKING.md",
+		"/Users/james/projects/bishop-netboot/unattended/windows10-unattend-basic.cfg",
+		"/Users/james/projects/bishop-netboot/windows/mount.cmd",
+		"/Users/james/projects/bishop-netboot/windows/winpeshl.ini",
+		"/Users/james/projects/bishop-netboot/scripts/windows10.ipxe",
+		"/Users/james/projects/bishop-netboot/README_old.md",
+		"/Users/james/projects/bishop-netboot/unattended/default.cfg",
+		"/Users/james/projects/ipxe-studio/ipxe-studio.py",
+		"/Users/james/projects/ipxe-studio/client-list.json",
+		"/Users/james/Downloads/config-James-Firewall.bishopdynamics.com-20190823133547.xml",
+		"/Users/james/projects/Notes/ideas/scram-script.md",
+		"/Users/james/projects/bishop-netboot/scripts/debian10-x64.ipxe",
+		"/Users/james/projects/bishop-netboot/scripts/gparted64.ipxe",
+		"/Users/james/projects/bishop-netboot/scripts/debian9-x64.ipxe",
+		"/Users/james/projects/bishop-netboot/scripts/default.ipxe",
+		"/Users/james/projects/mrchromebox/setup-kodi.sh",
+		"/Users/james/projects/bishop-netboot/examples/debian-base.cfg",
+		"/Users/james/projects/bishop-netboot/examples/debian-default-user.cfg",
+		"/Users/james/projects/bishop-netboot/examples/debian-default-partitions.cfg",
+		"/Users/james/projects/bishop-netboot/examples/debian-nvidia.cfg",
+		"/Users/james/projects/bishop-netboot/menu-stage1.ipxe",
+		"/Users/james/projects/bishop-netboot/menu-stage2.ipxe",
+		"/Users/james/bin/slimplroxy.sh",
+		"/Users/james/projects/Notes/ideas/distributed-client-interface.md",
+		"/Users/james/projects/Notes/ideas/global-homes.md",
+		"/Users/james/projects/ipxe-studio/README.md",
+		"/Users/james/projects/ipxe-studio/scripts/interactive-menu.ipxe",
+		"/Users/james/projects/ipxe-studio/scripts/fallback-menu.ipxe",
+		"/Users/james/projects/ipxe-studio/stage1.ipxe",
+		"/Users/james/projects/ipxe-studio/scripts/default.ipxe",
+		"/Users/james/projects/ipxe-studio/.gitignore",
+		"/Users/james/projects/ipxe-studio/scripts/example.ipxe",
+		"/Users/james/projects/ipxe-studio/scripts/rpi-docker.ipxe",
+		"/Users/james/projects/ipxe-studio/scripts/vm-docker.ipxe",
+		"/Users/james/projects/ipxe-studio/run.sh",
+		"/Users/james/projects/ipxe-studio/setup-env.sh",
+		"/Users/james/projects/docker/scripts/setup_docker_host_vm_debian.sh",
+		"/Users/james/projects/Notes/README.md",
+		"/Users/james/projects/Notes/commit.sh",
+		"/Users/james/projects/docker/composefiles/openhab/openhab.yml",
+		"/Users/james/projects/docker/ideas/swarmsync",
+		"/Users/james/projects/docker/ideas/ramble",
+		"/Users/james/Desktop/setup_docker.sh",
+		"/Users/james/Downloads/data.json",
+		"/Users/james/projects/BishopMessagingSystem/services/distributed_var_indexer.py",
+		"/Users/james/projects/RTCW-iOS/RTCW-SP-iOS/Return to Castle Wolfenstein/Main/scripts/common.shader",
+		"/Users/james/projects/RTCW-iOS/RTCW-SP-iOS/Return to Castle Wolfenstein/Main/pak0/scripts/common.shader",
+		"/Users/james/projects/BishopMessagingSystem/docs/MessageSystem.md",
+		"/Users/james/projects/pixel-c/notes"
+	],
+	"find":
+	{
+		"height": 39.0
+	},
+	"find_in_files":
+	{
+		"height": 101.0,
+		"where_history":
+		[
+			"<current file>",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"replace",
+			"if 'has_",
+			"UNATTENDEDS_LIST",
+			"IMAGES_LIST",
+			"# ",
+			"winreg",
+			"Password",
+			"body",
+			"nbsp",
+			"# ",
+			"#",
+			"announce_step",
+			"IMAGES_LIST",
+			"CLIENT_LIST",
+			"IMAGES_LIST",
+			"CreateDropdownImages",
+			"CreateDropdownScripts",
+			"respond_fallback_script",
+			"BUILT_IN_SCRIPT_DEFAULT",
+			"BUILT_IN_SCRIPT_DEFAULT_NAME",
+			"FALLBACK_SCRIPT",
+			"DEFAULT_SCRIPT",
+			"DEFAULT_UNATTENDED",
+			"DEFAULT_SCRIPT",
+			"script",
+			"BUILT_IN_IMAGE_DEFAULT_NAME",
+			"BUILT_IN_IMAGE_DEFAULT",
+			"FALLBACK_SCRIPT",
+			"()\n",
+			"SCRIPT",
+			"script",
+			"DEFAULT_SCRIPT",
+			"SCRIPTS_LIST",
+			"BUILT_IN_SCRIPT_DEFAULT",
+			"BUILT_IN_SCRIPT_DEFAULT_NAME",
+			"make",
+			"8080",
+			"wide-button",
+			".wide-button",
+			"ipxe studio",
+			"ipxe-studio",
+			"boot.ipxe",
+			"HTTP_FOLDER",
+			"SMB_FOLDER",
+			"delay-time",
+			"this-image-base",
+			"FALLBACK_UNATTENDED",
+			"SaveClientList(C",
+			"respond_fallback()",
+			" ",
+			"---",
+			" ",
+			"---",
+			"boot-failed",
+			" /",
+			"image-base",
+			"linux-base",
+			"mount.bat",
+			"ipxe_url",
+			"syslinux",
+			"boot-failed",
+			"SaveClientList",
+			"SAVECLIENTLIST",
+			"showtime",
+			"getscript",
+			"em0",
+			"server-ip",
+			"user",
+			"showtime",
+			"server-ip"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"UNATTENDED_LIST",
+			"IMAGE_LIST",
+			"// ",
+			"## ",
+			"##",
+			"echo",
+			"CreateDropdownImages",
+			"respond_fallback_image",
+			"BUILT_IN_IMAGE_DEFAULT",
+			"BUILT_IN_IMAGE_DEFAULT_NAME",
+			"BUILT_IN_SCRIPT_DEFAULT",
+			"BUILT_IN_SCRIPT_DEFAULT_NAME",
+			"BUILT_IN_UNATTENDED_DEFAULT_NAME",
+			"BUILT_IN_IMAGE_DEFAULT",
+			"DEFAULT_IMAGE",
+			"BUILT_IN_IMAGE_DEFAULT",
+			"BUILT_IN_IMAGE_DEFAULT_NAME",
+			"sidebar-button",
+			"netboot-studio",
+			"netboot.ipxe",
+			"http-base",
+			"",
+			"\n",
+			"",
+			"\n",
+			"failed",
+			" ",
+			"image-root",
+			"image-base",
+			"mount.cmd",
+			"failed",
+			"next-server",
+			"james",
+			"netboot-server"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"folders":
+	[
+		{
+			"path": "/Users/james/projects/netboot-studio"
+		}
+	],
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "netboot-studio.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 61625,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								345,
+								345
+							]
+						],
+						"settings":
+						{
+							"SL.122.region_keys":
+							[
+								"SL.pylint.Highlights.|eb1e86114a4eaa3ea5ff56278d7062d2bf12ed89b0939415439fec93b021fae5|region.yellowish markup.warning.sublime_linter|32",
+								"SL.pylint.Highlights.|e430c15cea19d5058b3d0ce922c2e7bc596010c9756de43d26a50d0e4d5f6e8f|region.yellowish markup.warning.sublime_linter|32",
+								"SL.pylint.Highlights.|3beb9e05afe4a05814873d2b83d9e2382030e9fd1605ae2c9a21602e4535cbb1|region.yellowish markup.warning.sublime_linter|32",
+								"SL.pylint.Highlights.|b326a4b83343b088b10f90f4b65a03d59658488e026d083757dc57ea7762e4e4|region.yellowish markup.warning.sublime_linter|32",
+								"SL.pylint.Highlights.|544284695a4b94e5bd6032e6aa8d759b810ba8b4f6f751f651fb66707edb7568|region.yellowish markup.warning.sublime_linter|32",
+								"SL.pylint.Highlights.|146a1d344ad8c9d102a953abd8b8ac6be98c126fe59b31c806562928dd194998|region.yellowish markup.warning.sublime_linter|32",
+								"SL.pylint.Highlights.|cbb9f73ebf1d189fb1e511393b4f880b3cb0177e40aea2a4d83e44d755c6fe9d|region.yellowish markup.warning.sublime_linter|32",
+								"SL.pylint.Highlights.|15c403630b61d5b685b8917aed339e6ae6613424ca60db245a2d774689cbc99f|region.yellowish markup.warning.sublime_linter|32",
+								"SL.pylint.Highlights.|e43f2126675c953342b97bb8fe8fb5353197ac46a62c7bcc54b19d0f85844b04|region.yellowish markup.warning.sublime_linter|32",
+								"SL.pylint.Highlights.|f8821cec255ff313ab93a8de0ea7a665958c09fa7160420cd673d7573d1aff32|region.yellowish markup.warning.sublime_linter|32",
+								"SL.pylint.Gutter.|region.yellowish markup.warning.sublime_linter|dot",
+								"SL.pylint.Highlights.|5d20079d2c73a61730d060736b5a812afb7fbbfa789131a664c84cdd8b864199|region.yellowish markup.warning.sublime_linter|32",
+								"SL.pylint.Highlights.|9500b5a98b4eba094988a1a8a8d5dfc1f1fa36fa5071ae99e82bde4580e357bd|region.yellowish markup.warning.sublime_linter|32",
+								"SL.pylint.Highlights.|b4dc38a892902d7a63e0d02d80c489114b50f576cf191f1ddd4e5caea9c9e776|region.yellowish markup.warning.sublime_linter|32",
+								"sublime_linter.protected_regions"
+							],
+							"SL.13.region_keys":
+							[
+								"SL.pylint.Highlights.|eb1e86114a4eaa3ea5ff56278d7062d2bf12ed89b0939415439fec93b021fae5|region.yellowish markup.warning.sublime_linter|32",
+								"SL.pylint.Highlights.|e430c15cea19d5058b3d0ce922c2e7bc596010c9756de43d26a50d0e4d5f6e8f|region.yellowish markup.warning.sublime_linter|32",
+								"SL.pylint.Highlights.|146a1d344ad8c9d102a953abd8b8ac6be98c126fe59b31c806562928dd194998|region.yellowish markup.warning.sublime_linter|32",
+								"SL.pylint.Highlights.|544284695a4b94e5bd6032e6aa8d759b810ba8b4f6f751f651fb66707edb7568|region.yellowish markup.warning.sublime_linter|32",
+								"sublime_linter.protected_regions",
+								"SL.pylint.Highlights.|cbb9f73ebf1d189fb1e511393b4f880b3cb0177e40aea2a4d83e44d755c6fe9d|region.yellowish markup.warning.sublime_linter|32",
+								"SL.pylint.Gutter.|region.yellowish markup.warning.sublime_linter|dot",
+								"SL.pylint.Highlights.|e43f2126675c953342b97bb8fe8fb5353197ac46a62c7bcc54b19d0f85844b04|region.yellowish markup.warning.sublime_linter|32",
+								"SL.pylint.Highlights.|b326a4b83343b088b10f90f4b65a03d59658488e026d083757dc57ea7762e4e4|region.yellowish markup.warning.sublime_linter|32",
+								"SL.pylint.Highlights.|3beb9e05afe4a05814873d2b83d9e2382030e9fd1605ae2c9a21602e4535cbb1|region.yellowish markup.warning.sublime_linter|32",
+								"SL.pylint.Highlights.|15c403630b61d5b685b8917aed339e6ae6613424ca60db245a2d774689cbc99f|region.yellowish markup.warning.sublime_linter|32",
+								"SL.pylint.Highlights.|f8821cec255ff313ab93a8de0ea7a665958c09fa7160420cd673d7573d1aff32|region.yellowish markup.warning.sublime_linter|32",
+								"SL.pylint.Highlights.|5d20079d2c73a61730d060736b5a812afb7fbbfa789131a664c84cdd8b864199|region.yellowish markup.warning.sublime_linter|32",
+								"SL.pylint.Highlights.|9500b5a98b4eba094988a1a8a8d5dfc1f1fa36fa5071ae99e82bde4580e357bd|region.yellowish markup.warning.sublime_linter|32",
+								"SL.pylint.Highlights.|b4dc38a892902d7a63e0d02d80c489114b50f576cf191f1ddd4e5caea9c9e776|region.yellowish markup.warning.sublime_linter|32"
+							],
+							"SL.28.region_keys":
+							[
+								"sublime_linter.protected_regions",
+								"SL.annotations.Gutter.|region.yellowish markup.warning.sublime_linter|dot",
+								"SL.annotations.Highlights.|b760d9c4d7a9f3718d8f878f60ae9b8ccf50ebbbd090477204ad04f3655daf46|region.yellowish markup.warning.sublime_linter|32",
+								"SL.pylint.Highlights.|f40443f0d6536850253020c796be473f4c8658f049880928092696d47cf3ca78|region.redish markup.error.sublime_linter|32",
+								"SL.pylint.Gutter.|region.redish markup.error.sublime_linter|dot"
+							],
+							"SL.284.region_keys":
+							[
+								"SL.pylint.Gutter.|region.yellowish markup.warning.sublime_linter|dot",
+								"SL.pylint.Highlights.|0ec648fc785354e7cdea8d7b64f2917420588c2ad9037dcfb693c42468aee101|region.yellowish markup.warning.sublime_linter|32",
+								"SL.pylint.Highlights.|bf86b4929a4e6a72e46c6a301fe378347e2c24b494e194eb4096e7e27815fe2d|region.yellowish markup.warning.sublime_linter|32",
+								"SL.pylint.Highlights.|0eb1b0562700daabeb0f9e15d6c533ce8524df1d2234ddb7ee58b97a363995d6|region.yellowish markup.warning.sublime_linter|32",
+								"SL.pylint.Highlights.|762d8417b9f89b26939f4bfeda2fe7120dc8c56b2161679350d113bff6dd21d0|region.yellowish markup.warning.sublime_linter|32",
+								"SL.pylint.Highlights.|e082af4ce102d698b93f97f32c586be7979f99893683741245b38449eb372330|region.yellowish markup.warning.sublime_linter|32",
+								"SL.pylint.Highlights.|685f50a940423b8de7aa4b38bbfda284b52e469a86ce9dad99c629d3eda69002|region.yellowish markup.warning.sublime_linter|32",
+								"SL.pylint.Highlights.|d58152793f0cfe9d520dc3c77a4b6cd30f6127837d81002ef42d3f7806589881|region.yellowish markup.warning.sublime_linter|32",
+								"SL.pylint.Highlights.|6a2eb2f8bf38ddb5822fd45fb1af3b7a0c37bfa725405ff38a38a1d84e1cf8e5|region.yellowish markup.warning.sublime_linter|32",
+								"SL.pylint.Highlights.|079a7adaefad9b9e4114f152aecc910aa90c20e76c13a9f891ed070306b3b7ab|region.yellowish markup.warning.sublime_linter|32",
+								"sublime_linter.protected_regions",
+								"SL.pylint.Highlights.|b60aa23726c81af1e9e3651a4c9ce6bb6621d1a5f994af150f41ef63862ed66f|region.yellowish markup.warning.sublime_linter|32",
+								"SL.pylint.Highlights.|a795f07b2904ced5c9b0c11120d97bfe9136125f25b7e7cba2643fdec5f6d24d|region.yellowish markup.warning.sublime_linter|32",
+								"SL.pylint.Highlights.|4918d2a20e0f07c7d22613287757757e656c4123b1d339ed4a14666fd58c4a62|region.yellowish markup.warning.sublime_linter|32",
+								"SL.pylint.Highlights.|b47a38c00a928383d38487460ebd4acd1e034b05b8740eeb22c7ff58e4bc2539|region.yellowish markup.warning.sublime_linter|32",
+								"SL.pylint.Highlights.|0151b7de7649514201165148442d08e12d4373f020702b0185cfa1f77ae02252|region.yellowish markup.warning.sublime_linter|32"
+							],
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 24.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.SublimeLinter":
+	{
+		"height": 0.0
+	},
+	"output.exec":
+	{
+		"height": 108.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "",
+	"replace":
+	{
+		"height": 44.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 301.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

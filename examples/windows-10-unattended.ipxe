@@ -1,0 +1,31 @@
+#!ipxe
+# Example of an Auto-Generated ipxe script for windows installer
+# Image: /opt/tftp-root/images/windows/wim/Windows-10-may2019-official
+# Source ISO: /opt/tftp-root/images/windows/wim/iso/Win10_1903_V1_English_x64.iso
+# Created: 2019-08-28_22:25:49
+
+set wim-image-name Windows-10-may2019-official
+
+set http-server http://${next-server}
+set full-image-path ${http-server}/images/windows/wim/${wim-image-name}
+
+imgload ${http-server}/wimboot || goto failed
+imgfetch ${full-image-path}/boot/fonts/segmono_boot.ttf  segmono_boot.ttf ||
+imgfetch ${full-image-path}/boot/fonts/segoe_slboot.ttf  segoe_slboot.ttf ||
+imgfetch ${full-image-path}/boot/fonts/segoen_slboot.ttf segoen_slboot.ttf ||
+imgfetch ${full-image-path}/boot/fonts/wgl4_boot.ttf     wgl4_boot.ttf ||
+imgfetch http://${next-server}:6161/unattend.xml?macaddress=${mac} unattend.xml || goto failed
+imgfetch ${full-image-path}/startnet.cmd startnet.cmd || goto failed
+imgfetch ${full-image-path}/mount.cmd mount.cmd || goto failed
+imgfetch ${full-image-path}/winpeshl.ini winpeshl.ini|| goto failed
+imgfetch ${full-image-path}/boot/bcd BCD || goto failed
+imgfetch ${full-image-path}/boot/boot.sdi boot.sdi || goto failed
+imgfetch -n boot.wim ${full-image-path}/sources/boot.wim boot.wim || goto failed
+
+echo Waiting 5 seconds to let you read messages above
+sleep 5 ||
+imgexec || goto failed
+
+:failed
+echo Something failed, hopefully errors are printed above this
+prompt Press any key to reboot

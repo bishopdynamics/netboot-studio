@@ -1,0 +1,39 @@
+#!ipxe
+# gparted x64 
+
+set http-server http://${next-server}
+set images-root ${http-server}/images
+set tools-base ${images-root}/tools
+
+
+set this-image-base ${tools-base}/gparted-live-0.30.0-1-amd64/live
+set this-image-kernel vmlinuz
+set this-image-initrd initrd.img
+set this-image-args initrd=initrd.img boot=live config components union=overlay username=user noswap noeject ip= vga=788 fetch=${this-image-base}/filesystem.squashfs
+show this-image-base
+show this-image-kernel
+show this-image-initrd
+set this-full-kernel-uri ${this-image-base}/${this-image-kernel}
+set this-full-initrd-uri ${this-image-base}/${this-image-initrd}
+echo xxxxxxxxxxx  starting xxxxxxxxxxx
+imgfree
+imgfetch ${this-full-kernel-uri} || goto boot-failed
+imgfetch ${this-full-initrd-uri} || goto boot-failed
+imgload ${this-image-kernel} || goto boot-failed
+imgargs ${this-image-kernel} ${this-image-args} || goto boot-failed
+imgexec || goto boot-failed
+
+
+:failed
+echo Something failed, hopefully errors are printed above this
+prompt Press any key to reboot
+goto reboot
+
+:boot-failed
+echo Failed to boot! hopefully errors are printed above this
+echo   make sure that you use the correct architecture
+prompt Press any key to reboot
+goto reboot
+
+:reboot
+reboot
